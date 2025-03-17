@@ -1,0 +1,80 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Test0
+      id: test0
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test0
+        setup-command: ''
+        command: make test0
+        timeout: 10
+        max-score: 1
+    - name: Test1
+      id: test1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test1
+        setup-command: ''
+        command: make test1
+        timeout: 10
+        max-score: 1
+    - name: Test2
+      id: test2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test2
+        setup-command: ''
+        command: make test2
+        timeout: 10
+        max-score: 1
+    - name: Test3
+      id: test3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test3
+        setup-command: ''
+        command: make test3
+        timeout: 10
+        max-score: 1
+    - name: Test4
+      id: test4
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test4
+        setup-command: ''
+        command: make test4
+        timeout: 10
+        max-score: 1
+    - name: Test5
+      id: test5
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test5
+        setup-command: ''
+        command: make test5
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST0_RESULTS: "${{steps.test0.outputs.result}}"
+        TEST1_RESULTS: "${{steps.test1.outputs.result}}"
+        TEST2_RESULTS: "${{steps.test2.outputs.result}}"
+        TEST3_RESULTS: "${{steps.test3.outputs.result}}"
+        TEST4_RESULTS: "${{steps.test4.outputs.result}}"
+        TEST5_RESULTS: "${{steps.test5.outputs.result}}"
+      with:
+        runners: test0,test1,test2,test3,test4,test5

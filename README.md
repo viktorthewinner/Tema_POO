@@ -2,9 +2,7 @@
 
 Plamadeala Victor 324AB
 
-am folosit in principiu VS Code
-
-in principiu am doar constructorii si operatorii si metodele necesare rularii, in ambele 3 clase.
+Am construit 3 clase mostenite intre ele. Am definit metodele necesare rezolvarii.
 
 main:
 {
